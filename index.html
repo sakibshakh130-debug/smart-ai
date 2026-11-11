@@ -1,1 +1,122 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#0b1020;color:white;
+ font-family:Arial,sans-serif;height:100vh;
+ display:flex;flex-direction:column
+}
+header{
+ padding:18px;background:#111a2e;
+ border-bottom:1px solid #26334d;
+ display:flex;align-items:center;gap:12px
+}
+.logo{
+ background:#16a36a;width:42px;height:42px;
+ border-radius:13px;display:grid;place-items:center;
+ font-size:23px;font-weight:bold
+}
+header h2{margin:0;font-size:21px}
+header small{color:#16d995}
+#chat{
+ flex:1;overflow-y:auto;padding:18px 14px;
+ display:flex;flex-direction:column;gap:16px
+}
+.message{
+ max-width:88%;padding:13px 15px;
+ border-radius:15px;line-height:1.6;
+ white-space:pre-wrap;overflow-wrap:anywhere
+}
+.bot{background:#19243a;align-self:flex-start}
+.user{background:#087d59;align-self:flex-end}
+.welcome{text-align:center;margin:auto 0;color:#b9c6d9}
+.welcome h1{font-size:29px;color:white}
+.welcome p{color:#9baac2}
+footer{padding:12px;background:#111a2e}
+.inputbox{
+ display:flex;gap:8px;max-width:750px;margin:auto;
+ background:#202c42;padding:8px;border-radius:16px;
+ border:1px solid #35445d
+}
+input{
+ flex:1;min-width:0;background:transparent;
+ border:0;outline:0;color:white;font-size:16px;
+ padding:10px
+}
+button{
+ border:0;border-radius:12px;background:#10a875;
+ color:white;padding:0 17px;font-size:18px;
+ font-weight:bold;cursor:pointer
+}
+.note{text-align:center;color:#8592a8;font-size:11px;margin:9px 0 2px}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">S</div>
+ <div>
+  <h2>Smart AI</h2>
+  <small>● Your AI Assistant</small>
+ </div>
+</header>
+
+<main id="chat">
+ <div class="welcome" id="welcome">
+  <h1>👋 Hello! Welcome to Smart AI</h1>
+  <p>আমি তোমার AI Assistant। আমাকে কিছু জিজ্ঞাসা করো!</p>
+ </div>
+</main>
+
+<footer>
+ <div class="inputbox">
+  <input id="question" type="text"
+   placeholder="এখানে প্রশ্ন লিখুন..."
+   autocomplete="off">
+  <button onclick="sendMessage()">➤</button>
+ </div>
+ <div class="note">Smart AI • Your intelligent assistant</div>
+</footer>
+
+<script>
+const chat=document.getElementById("chat");
+const input=document.getElementById("question");
+
+function addMessage(text,type){
+ const div=document.createElement("div");
+ div.className="message "+type;
+ div.textContent=text;
+ chat.appendChild(div);
+ chat.scrollTop=chat.scrollHeight;
+}
+
+function sendMessage(){
+ const text=input.value.trim();
+ if(!text)return;
+
+ const welcome=document.getElementById("welcome");
+ if(welcome)welcome.remove();
+
+ addMessage(text,"user");
+ input.value="";
+
+ setTimeout(()=>{
+  addMessage(
+   "ধন্যবাদ! আমি Smart AI। আমার AI সার্ভার এখনো সংযুক্ত করা হয়নি। পরবর্তী ধাপে আমাকে সত্যিকারের AI-এর সঙ্গে যুক্ত করা হবে।",
+   "bot"
+  );
+ },500);
+}
+
+input.addEventListener("keydown",function(e){
+ if(e.key==="Enter")sendMessage();
+});
+</script>
+</body>
+</html>
+
