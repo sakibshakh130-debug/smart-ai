@@ -145,9 +145,9 @@ async function sendMessage(){
     }
 
     addMessage(
-      "দুঃখিত! AI সংযোগে সমস্যা হয়েছে। আবার চেষ্টা করুন।",
-      "bot"
-    );
+  "সমস্যা: " + error.message,
+  "bot"
+);
 
     console.error(error);
   }
